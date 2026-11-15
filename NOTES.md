@@ -15,8 +15,8 @@
 
 - Session started 2026-11-15T18:02:43Z (after the 18:00:00Z opening).
 - Repo: https://github.com/Ci3hu1/best-game-01 (created 2026-11-15T18:18:07Z)
-- Commit: b8ff7cc681ad314659d37052f1d87a651c6be58e (v1; NOTES.md + bundle
-  steps recorded below — update this line if the commit moves)
+- Commit: d90070de6451b9a5b91755773559e93e95153acb (v1; + NOTES.md update
+  in a later commit — see below)
 - Game: **Lumen Moth** — original 2D canvas arcade game. Steer a glowmoth
   (WASD/arrows/mouse), drink glowing blooms (+10 × combo up to ×5), dodge
   sine-flying bats, pulse them away (SPACE/click, 3 recharging charges),
@@ -50,11 +50,43 @@
 
 ## Kit check
 
-- (fill in after `node cli/makefun.mjs check --kit . --repo <repo> --transcripts <bundle>`)
+- Ran 2026-11-15T18:25:13Z against commit d90070d + bundle below:
+  **12 passed, 1 failed, 6 skipped, 5 checked at submission.**
+- Passes: competition_open, snapshot (25 files, 355,648 bytes), license_osi
+  (MIT), entrypoint (main.ts, node22), transcripts_present (1 muse-app
+  session), transcripts_recorded, thinking_wellformed (159 messages, 103
+  tool results), thinking_in_window (all timestamps 18:00:00Z–18:25:13Z),
+  thinking_reproduces (**99.7%**: 1864/1868 authored lines, 0 copied, 0
+  pasted, 0 read, 4 absent; main.ts 17 authored lines), thinking_turns
+  (46), thinking_revised (shots.js from 3 messages), transcripts_run_record.
+- **FAIL — thinking_priced only: 0 usage rows.** Expected for a subagent
+  build: a subagent's usage rows are written only once its run completes.
+  Fix (parent/top-level agent, established pattern): after this session
+  ends, run the muse.db SELECT for agent_id
+  ee3800f4-7038-4e4b-8cf8-13b4437e5fea (and the parent's own
+  98e583ba-959c-443f-9d20-8283d31c2fd7), write rows unchanged to
+  ~/workspace/tools/makefun/best-game-01-muse-usage.jsonl, re-bundle with
+  --muse-usage added (same flags as below), re-check the new HEAD.
+- Checked at submission (site verifies): repo_public (repo IS public),
+  repo_owner (owner Ci3hu1 = the account's GitHub login), 
+  repo_created_after_open (created 2026-11-15T18:18:07Z, after opening),
+  commit_in_repo (pushed), duplicate_snapshot (original work).
 
 ## Bundle
 
-- (fill in: bundle file, size, sha256, sessions bundled)
+- Bundle: ~/workspace/tools/makefun/best-game-01-transcripts.tar.gz,
+  188,373 bytes, sha256
+  dab000428fce46358aa945e5a33d8aea51502e66d0091def1cd803b0a91c9df7
+  (1 muse-app session, 55 turns, 269 lines kept; run record: scheduled
+  prompt, system prompt uploaded, 1 instruction file collected, no MCP
+  servers; harness muse-app v1, provider meta, model muse-spark-1.3,
+  effort default). **Pre-usage-rows bundle — parent must re-bundle with
+  --muse-usage before submit (see check section).**
+- Bundle command (from inside
+  ~/workspace/tools/makefun/best-game-01-kit/best-game-01-kit):
+  `node cli/makefun.mjs bundle --repo ~/workspace/tools/makefun/best-game-01 --out ~/workspace/tools/makefun/best-game-01-transcripts.tar.gz --session ~/agents/agent-ee3800f4-7038-4e4b-8cf8-13b4437e5fea/sessions/ee3800f4-7038-4e4b-8cf8-13b4437e5fea.jsonl --no-discover --no-family --system-prompt /tmp/best-game-01-sysprompt.txt --prompt-file /tmp/best-game-01-prompt.txt --prompt-origin scheduled --prompt-via "hourly cron makefun-cek-bounty-baru-rutin; the cron worker spawned this build session for best-game-01" --harness muse-app --harness-version 1 --provider meta --model muse-spark-1.3 --effort default --mcp none --redact "Joni Gunawan" --redact "joni07683@gmail.com" --redact "+62 85175067683" [--muse-usage ~/workspace/tools/makefun/best-game-01-muse-usage.jsonl]`
+- Check command:
+  `node cli/makefun.mjs check --kit . --repo ~/workspace/tools/makefun/best-game-01 --transcripts ~/workspace/tools/makefun/best-game-01-transcripts.tar.gz`
 
 ## Submit
 

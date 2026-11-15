@@ -15,8 +15,7 @@
 
 - Session started 2026-11-15T18:02:43Z (after the 18:00:00Z opening).
 - Repo: https://github.com/Ci3hu1/best-game-01 (created 2026-11-15T18:18:07Z)
-- Commit: d90070de6451b9a5b91755773559e93e95153acb (v1; + NOTES.md update
-  in a later commit — see below)
+- Commit: 69b70939c58bbb2fe3f39eedbb994967d909b64c (v1 + bundle/check record; NOTES.md re-bundle update committed after this — the commit submitted will be the HEAD at submit time, re-checked below)
 - Game: **Lumen Moth** — original 2D canvas arcade game. Steer a glowmoth
   (WASD/arrows/mouse), drink glowing blooms (+10 × combo up to ×5), dodge
   sine-flying bats, pulse them away (SPACE/click, 3 recharging charges),
@@ -67,6 +66,15 @@
   98e583ba-959c-443f-9d20-8283d31c2fd7), write rows unchanged to
   ~/workspace/tools/makefun/best-game-01-muse-usage.jsonl, re-bundle with
   --muse-usage added (same flags as below), re-check the new HEAD.
+- **Re-bundle + re-check by parent 2026-11-15T18:29:45Z: 13 passed, 0 failed,
+  6 skipped, 5 checked at submission.** thinking_priced now PASSES
+  (1 usage record, each priced to a known model). thinking_reproduces
+  99.7% (1895/1900 authored lines). Re-bundle sha
+  6183cadd8ba42a72208d355d8b3a955e0a90cb8d082b3c3e6c12159793ab01c2,
+  198,379 bytes, 61 turns, 289 lines, 1 usage row attached (parent's row
+  left out — its session is not bundled, as the kit says). Usage rows from
+  muse.db: subagent 1 row (input 8,883,287 / output 67,781, model
+  ipnext/avocado-5.17-v2, created 1794767222); parent 1 row (left out).
 - Checked at submission (site verifies): repo_public (repo IS public),
   repo_owner (owner Ci3hu1 = the account's GitHub login), 
   repo_created_after_open (created 2026-11-15T18:18:07Z, after opening),
@@ -75,13 +83,15 @@
 ## Bundle
 
 - Bundle: ~/workspace/tools/makefun/best-game-01-transcripts.tar.gz,
-  188,373 bytes, sha256
-  dab000428fce46358aa945e5a33d8aea51502e66d0091def1cd803b0a91c9df7
-  (1 muse-app session, 55 turns, 269 lines kept; run record: scheduled
-  prompt, system prompt uploaded, 1 instruction file collected, no MCP
-  servers; harness muse-app v1, provider meta, model muse-spark-1.3,
-  effort default). **Pre-usage-rows bundle — parent must re-bundle with
-  --muse-usage before submit (see check section).**
+ **198,379 bytes, sha256
+ 6183cadd8ba42a72208d355d8b3a955e0a90cb8d082b3c3e6c12159793ab01c2**
+ (re-bundled by parent 18:29Z with --muse-usage; 1 muse-app session,
+ 61 turns, 289 lines kept, 1 usage row attached; run record: scheduled
+ prompt, system prompt uploaded, 1 instruction file collected, no MCP
+ servers; harness muse-app v1, provider meta, model muse-spark-1.3,
+ effort default). Pre-usage bundle was 188,373 bytes, sha256
+ dab000428fce46358aa945e5a33d8aea51502e66d0091def1cd803b0a91c9df7 —
+ SUPERSEDED, do not submit.
 - Bundle command (from inside
   ~/workspace/tools/makefun/best-game-01-kit/best-game-01-kit):
   `node cli/makefun.mjs bundle --repo ~/workspace/tools/makefun/best-game-01 --out ~/workspace/tools/makefun/best-game-01-transcripts.tar.gz --session ~/agents/agent-ee3800f4-7038-4e4b-8cf8-13b4437e5fea/sessions/ee3800f4-7038-4e4b-8cf8-13b4437e5fea.jsonl --no-discover --no-family --system-prompt /tmp/best-game-01-sysprompt.txt --prompt-file /tmp/best-game-01-prompt.txt --prompt-origin scheduled --prompt-via "hourly cron makefun-cek-bounty-baru-rutin; the cron worker spawned this build session for best-game-01" --harness muse-app --harness-version 1 --provider meta --model muse-spark-1.3 --effort default --mcp none --redact "Joni Gunawan" --redact "joni07683@gmail.com" --redact "+62 85175067683" [--muse-usage ~/workspace/tools/makefun/best-game-01-muse-usage.jsonl]`
